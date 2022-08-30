@@ -1,0 +1,65 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="home" align="center">
+
+    <h1>Profil</h1>
+
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Prénom:</strong> {{ user.first_name }}</p>
+    <p><strong>Nom:</strong> {{ user.last_name }}</p>
+    <p><strong>Adresse email:</strong> {{ user.email }}</p>
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Modifier adresse email</button>
+    <hr>
+    <p><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></p>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- BUG ICI, mais je ne sais pas comment le régler -->
+            <form action="user-detail" method="PATCH">
+                {% csrf_token %}
+                <label for="email_name">Nouvelle adresse email: </label>
+                <input id="email_name" type="text" name="name_field">
+                <input type="submit" value="OK">
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+    {% endblock %}
