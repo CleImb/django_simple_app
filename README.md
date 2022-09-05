@@ -2,7 +2,7 @@
 
 Une application Django simple de démonstration. Elle permet :
 * À partir de l'interface admin de Django de créer un utilisateur : `<host>/admin/`
-* À un utilisateur de se loger avec une authentification simple et de modifier son adresse email, avec front en html-css : `<host>/accounts/`
+* À un utilisateur de se loger avec une authentification simple et de modifier son adresse email, avec front en html-css :
 * À quiquonque, grace à une structure en rest, de pouvoir récupérer, créer, modifier, supprimer directement les users : `<host>/accounts/users/`
 
 ## Quick start
@@ -32,8 +32,6 @@ DJANGO_SETTINGS_MODULE=<django_settings_module>
 
 * Il n'y a pas la possibilité pour un utilisateur de créer son entrée lui-même dans la base de données à partir d'un formulaire. Pour ce faire, il faut passer par l'interface admin de Django.
 * La partie front n'est pas pleinement fonctionnelle. Le clique pour la modification de l'adresse mail renvoie une erreur. Pour la corriger, il faut modifier l'appel dans le fichier html : `accounts/templates/accounts/user_detail.html`
-* La partie js de ce même fichier est appeler dans le html. Elle devrait se trouver dans un fichier static à part.
-* La partie rest n'a aucune sécurisation pour des faciliter de test. C'est bien sûr à changer pour une utilisation réélle.
 * Les templates d'authentification sont inspirés de ceux présents dans `https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication`
 * Formating avec Black
 * Aucun test unitaire n'est présent.

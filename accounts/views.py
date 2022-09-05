@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from rest_framework import status, viewsets
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -10,6 +11,8 @@ from .serializers import UserSerializer
 
 class UserDetail(LoginRequiredMixin, APIView):
     """Allow logged user to get his profil infos and to patch it."""
+
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         return render(
@@ -33,3 +36,4 @@ class UserViewSet(viewsets.ModelViewSet):
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAdminUser]

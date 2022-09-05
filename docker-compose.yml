@@ -1,5 +1,9 @@
 version: "3.9"
 
+networks:
+  django_simple_app:
+    name: django_simple_app
+
 services:
 
   db:
@@ -8,6 +12,8 @@ services:
       - ./data/db:/var/lib/postgresql/data
     env_file:
     - .env
+    networks:
+      - django_simple_app
 
   web:
     build: .
@@ -19,4 +25,6 @@ services:
     - .env
     ports:
       - "8004:8000"
+    networks:
+      - django_simple_app
     command: python manage.py runserver 0.0.0.0:8000
